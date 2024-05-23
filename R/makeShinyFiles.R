@@ -450,7 +450,7 @@ makeShinyFiles <- function(
   sc1conf = sc1conf[, -c("fUI", "default"), with = FALSE]
   
   
-  info <- Data@tools$info
+  info <- obj@tools$info
   sc1deg <- readRDS(paste0(info$dir$dir,info$dir$rds,info$filename$all_markers))
   sc1deg <- lapply(sc1deg, function(x){
     subset(
