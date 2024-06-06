@@ -451,6 +451,8 @@ makeShinyFiles <- function(
   
   
   info <- obj@tools$info
+  obj@tools$info <- NULL
+  
   sc1deg <- readRDS(paste0(info$dir$dir,info$dir$rds,info$filename$all_markers))
   sc1deg <- lapply(sc1deg, function(x){
     subset(
@@ -464,6 +466,11 @@ makeShinyFiles <- function(
   saveRDS(sc1gene, file = paste0(shiny.dir, "/", shiny.prefix, "gene.rds"))
   saveRDS(sc1def,  file = paste0(shiny.dir, "/", shiny.prefix, "def.rds"))
   saveRDS(sc1deg, file = paste0(shiny.dir, "/", shiny.prefix, "deg.rds"))
+  saveRDS(obj, file = paste0(shiny.dir, "/", shiny.prefix, "results.rds"))
+  file.copy(
+    from = paste0(info$dir$dir,info$dir$rds,info$filename$info),
+    to = paste0(shiny.dir, "/", shiny.prefix, "info.rds")
+  )
   return(sc1conf)
 }
 
